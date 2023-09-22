@@ -2,3 +2,10 @@
 __pycache__/
 *.py[cod]
 *$py.class
+test/
+.idea/
+backend_main_django/env/
+backend_main_django/.env
+
+.DS_Store
+backend_main_django/.env
