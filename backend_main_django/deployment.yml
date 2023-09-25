@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: django-deployment
+  name: django-deployment-3
   labels:
     app: django
 spec:
@@ -32,7 +32,7 @@ metadata:
 spec:
   selector:
     app: django
-  type: NodePort
+  type: ClusterIP
   ports:
     - name      : app-listener
       protocol  : TCP
