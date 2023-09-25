@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: django-deployment-3
+  name: django-deployment-1
   labels:
     app: django
 spec:
@@ -28,7 +28,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: django-service
+  name: django-service-1
 spec:
   selector:
     app: django
