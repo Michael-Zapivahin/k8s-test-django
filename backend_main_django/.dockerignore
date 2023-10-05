@@ -1,4 +1,4 @@
-env
+env/
 clear-sessions.yml
 deployment.yml
 ingress.yml
