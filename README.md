@@ -109,3 +109,68 @@ kubectl exec --stdin --tty <pod_name> -- sh
 ```shell
 kubectl apply -f clear-sessions.yml
 ```
+## Деплой проекта в кластере Kubernetes:
+Пример сайта, работающего в кластере [Kubernetes](https://edu-clever-yalow.sirius-k8s.dvmn.org/admin/)
+
+Для развертывания проекта в Kubernetes вам потребуется [cерверная инфраструктура:](https://sirius-env-registry.website.yandexcloud.net/edu-clever-yalow.html)
+
+Для отладки вам пригодится  графический клиент: [Lens Desktop Personal](https://store.k8slens.dev/products/lens-desktop-personal) – бесплатная версия Lens.
+
+Получите K8s Namespace из серверной инфрастуктуры "K8s Namespace"
+
+Подключитесь к кластеру и выполните следующие команды: (замените K8s Namespace на свой)
+
+```shell
+kubectl apply -f k8s-yandex/configmap.yaml -n <K8s Namespace>
+
+kubectl -n <K8s Namespace> apply -f k8s-yandex/django.yaml
+```
+
+Получите имя пода. <pod-name> для подключения к базе данных. 
+
+```shell
+kubectl get pods -n <K8s Namespace> 
+```
+
+Запустите shell в кластере
+
+```shell
+kubectl -n edu-clever-yalow exec -it <pod-name>   -- /bin/sh
+
+```
+
+Инициализируйте базу данных и создайте пользователя:
+
+```shell
+python manage.py migrate
+python manage.py createsuperuser
+
+```
+
+Перейдите по ссылке на домен из [cерверной инфраструктуры ](https://sirius-env-registry.website.yandexcloud.net/edu-clever-yalow.html)
+
+Проект выполнен в учебных целях на курсах [Devman](https://dvmn.org/)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

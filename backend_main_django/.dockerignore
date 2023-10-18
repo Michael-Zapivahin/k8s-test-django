@@ -1,6 +1,8 @@
 /env
+/k8s-yandex
+.env
 clear-sessions.yml
 deployment.yml
 ingress.yml
 migrate.yml
-unit_config.json
+

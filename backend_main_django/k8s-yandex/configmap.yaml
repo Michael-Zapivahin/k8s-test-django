@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: django-config
+  namespace: edu-clever-yalow
+data:
+  ALLOWED_HOSTS: 127.0.0.1,localhost,edu-clever-yalow.sirius-k8s.dvmn.org
+  DEBUG: 'True'
+  SECRET_KEY: django-insecure-0if40nf4nf93n4
