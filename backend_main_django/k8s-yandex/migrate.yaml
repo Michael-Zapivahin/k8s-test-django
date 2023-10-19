@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: django-migrate
+  namespace: edu-clever-yalow
+  labels:
+    project: dj
+spec:
+  backoffLimit: 2
+  activeDeadlineSeconds: 60
+  template:
+    metadata:
+      labels:
+        project: dj
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: django-migrate-app
+        image: zapivahin/zmg_django:firsttry
+        command: ["python", "manage.py",  "migrate", "--no-input"]
+        envFrom:
+          - configMapRef:
+              name: django-config
+          - secretRef:
+              name: postgres

@@ -119,30 +119,26 @@ kubectl apply -f clear-sessions.yml
 Получите K8s Namespace из серверной инфрастуктуры "K8s Namespace"
 
 Подключитесь к кластеру и выполните следующие команды: (замените K8s Namespace на свой)
-
 ```shell
-kubectl apply -f k8s-yandex/configmap.yaml -n <K8s Namespace>
-
+kubectl -n <K8s Namespace> apply -f k8s-yandex/configmap.yaml
 kubectl -n <K8s Namespace> apply -f k8s-yandex/django.yaml
+kubectl -n <K8s Namespace> apply -f k8s-yandex/migrate.yaml
+kubectl -n <K8s Namespace> apply -f k8s-yandex/clear-sessions.yaml
 ```
 
-Получите имя пода. <pod-name> для подключения к базе данных. 
-
+Получите имя пода. <pod-name> для подключения к базе данных.
 ```shell
 kubectl get pods -n <K8s Namespace> 
 ```
 
 Запустите shell в кластере
-
 ```shell
-kubectl -n edu-clever-yalow exec -it <pod-name>   -- /bin/sh
+kubectl -n <K8s Namespace> exec -it <pod-name>   -- /bin/sh
 
 ```
 
-Инициализируйте базу данных и создайте пользователя:
-
+Cоздайте пользователя:
 ```shell
-python manage.py migrate
 python manage.py createsuperuser
 
 ```

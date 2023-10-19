@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: clear-sessions-app
+  namespace: edu-clever-yalow
+  labels:
+    project: dj
+spec:
+  schedule: "0 0 1 * *"
+  concurrencyPolicy: Replace
+  jobTemplate:
+    spec:
+      backoffLimit: 2
+      activeDeadlineSeconds: 100
+      template:
+        metadata:
+          labels:
+            project: dj
+        spec:
+          containers:
+          - name: django-clear-sessions-app
+            image: zapivahin/zmg_django:firsttry
+            command:
+              - python
+              - manage.py
+              - clearsessions
+            envFrom:
+              - configMapRef:
+                  name: django-config
+              - secretRef:
+                  name: postgres
+          restartPolicy: OnFailure
